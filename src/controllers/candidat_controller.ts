@@ -5,7 +5,7 @@ const db = new PrismaClient()
 
  var createCandidate=async (req:Request,res:Response)=>{
     try {
-        const {full_name,matricule,promotion,faculte,numero} =req.body;
+        const {full_name,matricule,promotion,faculte,numero,avatar} =req.body;
         const newCandidate=await db.candidat.create({
             data:{
                 created_at:Date.now(),
@@ -13,7 +13,8 @@ const db = new PrismaClient()
                 full_name:full_name,
                 matricule:matricule,
                 promotion:promotion ,
-                numero:numero 
+                numero:numero ,
+                avatar
             }
         });
         return res.status(201).json(newCandidate);

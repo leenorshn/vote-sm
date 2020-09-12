@@ -31,11 +31,21 @@ const db = new PrismaClient()
 var getAllVotes=async (req:Request,res:Response)=>{
     try {
         const votes=await db.votes.findMany({include:{candidat:true,electeur:true}});
-        return res.status(200).json({count:votes.length,data:votes});
+        return res.status(200).json({votes});
     } catch (error) {
         return res.status(500).json(error);
     }
 }
 
-export={getAllVotes,createVotes}
+var deleteVotes=async (req:Request,res:Response)=>{
+    const {id}=req.params
+    try {
+        const votes=await db.votes.delete({where:{id:Number(id)}});
+        return res.status(204);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
+
+export={getAllVotes,createVotes,deleteVotes}
 

@@ -1,2 +1,37 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<main role="main">
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Vote Electronique temps reels</h1>
+            <p class="lead text-muted">Votes du du president des etudiants de L'UAC</p>
+            <p>
+                <a href="#" class="btn btn-primary my-2">Main call to action</a>
+                <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+            </p>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="row">
+                {{#each this.candidats}}
+                <div class="posts">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7" style="margin-top: 50px;">
+                            <div class="card">
+
+                                <img src="{{this.avatar}}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Posted by {{this.full_name}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+</main>
