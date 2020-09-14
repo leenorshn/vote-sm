@@ -27,7 +27,7 @@ const db = new PrismaClient()
  var getAllCandidats=async (req:Request,res:Response)=>{
     try {
         const candidats=await db.candidat.findMany({include:{votes:true}})
-        return res.status(200).json(candidats);
+        return res.status(200).json({result:candidats});
     } catch (error) {
         return res.status(500).json(error);
     }
