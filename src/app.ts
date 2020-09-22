@@ -8,6 +8,16 @@ const {init,getIo} =require("./ioConfig");
 const app=express()
 app.use(express.json())
 
+//cors middleware
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-headers', "Origin,X-Requested-With,Content-Type,Accept,Authorization, auth-token");
+    if (req.method === "OPTIONS") {
+        res.header('Access-Control-Allow-Methods', "PUT,GET,PATCH,POST,DELETE");
+        return res.status(200).send({});
+    }
+    next();
+  });
 
 app.use(voteRoute)
 app.use(electeurRoute)
